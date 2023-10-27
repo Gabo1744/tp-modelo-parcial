@@ -1,0 +1,58 @@
+import seresHablantes.*
+import terrenos.*
+
+describe "Test territorio y seres" {
+	const elfoSilvano = new ElfoSilvano()
+	const hobbit = new Hobbit()
+	const enanoHerrero = new EnanoHerrero()
+	
+	const territorio = new Territorio()
+	
+	method initialize(){
+		hobbit.organizarFiesta()
+		territorio.agregarSer(elfoSilvano)
+		territorio.agregarSer(hobbit)
+		territorio.agregarSer(enanoHerrero)
+		territorio.huboUnTorneo()
+		territorio.huboEpifania()
+	}
+	
+	test "despues de la epifania La habilidad del elfo es 640"{
+		assert.equals(640,elfoSilvano.habilidad())
+	}
+	test "La habilidad del hobbit es 1100"{
+		assert.equals(1100,hobbit.habilidad())
+	}
+	test "despues del torneo La habilidad del enano es 500"{
+		assert.equals(500,enanoHerrero.habilidad())
+	}
+	
+	test "despues del torneo el hobbit tiene 53 amigos y ser inmortal"{
+		assert.equals(53,hobbit.cantidadDeAmigos())
+		assert.that(hobbit.esInmortal())
+	}
+	
+	test "despues del torneo y la epifania el promedio de habilidad del territorio es 746"{
+		assert.equals(746,territorio.promedioDeHabilidad())
+	}
+	
+	test "maximo habilidad entre inmortales es 1100"{
+		assert.equals(1100,territorio.MaximoHabilidadDeSeresInmortales())
+	}
+	
+	test "los seres torpes son el enano y el elfo"{
+		assert.equals(#{elfoSilvano,enanoHerrero},territorio.seresTorpes())
+	}
+	
+	test "existe un ser mortal en el territorio"{
+		assert.that(territorio.hayAlgunSerMortal())
+	}
+	
+	test "despues del torneo y la epifania el elfo sabe 80 canciones"{
+		assert.equals(80,elfoSilvano.cancionesQueSabe())
+	}
+	
+	test "despues del torneo y la epifania el enano sube su ira a 800"{
+		assert.equals(800,enanoHerrero.cantDeIra())
+	}
+}
